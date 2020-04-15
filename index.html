@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" class="theme-dark color-theme-pink">
+<html class="theme-dark color-theme-pink">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="theme-color" content="#007aff">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>Points</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="theme-color" content="#FF2D55">
-  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
-  <title>How much toilet paper?</title>
-  <link rel="stylesheet" href="framework7.bundle.min.css">
-  <link rel="stylesheet" href="app.css?6">
-  <link rel="apple-touch-icon" href="img/icon.png">
-  <link rel="icon" href="img/icon.png">
-  <meta name="description" content="Created by Chirag Galaiya">
-  <meta property="og:title" content="How much toilet paper?" />
-  <meta property="og:url" content="https://zoographic-overcoat.000webhostapp.com/" />
-  <meta property="og:description" content="Created by Chirag Galaiya">
-  <meta property="og:image" content="https://zoographic-overcoat.000webhostapp.com/img/icon.jpg">
+  <link rel="apple-touch-icon" href="static/icons/apple-touch-icon.png">
+  <link rel="icon" href="static/icons/favicon.png">
+  <link rel="stylesheet" href="css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="manifest" href="/manifest.json">
 </head>
 <body>
   <div id="app">
@@ -25,10 +24,13 @@
         <div class="navbar">
           <div class="navbar-bg"></div>
           <div class="navbar-inner">
-            <div class="title">How much toilet paper?</div>
+            <div class="title">Points</div>
             <div class="right">
               <a class="link icon-only" id="share" style="display: none;" onclick="share();">
                 <i class="material-icons md-only">share</i>
+              </a>
+              <a class="link icon-only" onclick="person();" id="person_btn">
+                <i class="material-icons md-only">person</i>
               </a>
               <a class="link icon-only popover-open" id="info_btn" data-popover=".popover-info">
                 <i class="material-icons md-only">settings</i>
@@ -37,622 +39,113 @@
           </div>
         </div>
         <div class="page-content">
-          <div class="tp-info">
-            <img src="img/icon.png" onclick="calculate();"/>
-            <br/>
-            <font class="main-text">You will last <b><font id="days">1000</font></b> days</font>
-            <div style="height:8px;"></div>
-            <font class="sub-text">or <b><font id="percentage">1667</font>%</b> of your quarntine</font>
-          </div>
-          <div class="list accordion-list inset" style="margin-bottom: 16px !important;">
-            <ul id="ul">
-              <li>
-                <div style="border-bottom: 1px solid rgba(255,255,255,.15);width:100%;">
-                  <table style="width:96%;margin-left: 2%;">
-                    <tr>
-                      <td>
-                        <table style="width:100%;">
-                          <tr>
-                            <td width="1%">
-                              <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Rolls you have</font>
-                            </td>
-                            <td width="98%"></td>
-                            <td width="1%">
-                              <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="v1">50</font>
-                            </td>
-                          </tr>
-                        </table>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>
-                        <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                          <div class="range-slider range-slider-init" data-label="false" id="r1">
-                            <input type="range" value="50" min="0" max="200" step="1">
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                </div>
-              </li>
-              <li>
-                <div class="item-content">
-                  <div class="item-inner people-cont">
-                    <div class="item-title">Users in household</div>
-                    <a class="link icon-only">
-                      <i class="material-icons md-only" style="font-size: 22px; opacity: 1;" onclick="add_person();">add</i>
-                    </a>
-                  </div>
-                </div>
-              </li>
-              <li id="person1">
-                <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                <table style="width:96%;margin-left: 2%;">
-                  <tr>
-                    <td width="1%">
-                      <font style="overflow: hidden; white-space: nowrap;">Person 1</font>
-                    </td>
-                    <td width="98%">
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Sheets used per trip</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val11">4</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r11">
-                                <input type="range" value="4" min="1" max="20" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Toilet visits per day</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val12">2</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r12">
-                                <input type="range" value="2" min="1" max="10" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="1%">
-                      <a class="link icon-only" style="opacity: 0;" id="del1">
-                        <i class="material-icons md-only" style="font-size: 22px;">clear</i>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </li>
-              <li id="person2" style="opacity: 0;">
-                <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                <table style="width:96%;margin-left: 2%;">
-                  <tr>
-                    <td width="1%">
-                      <font style="overflow: hidden; white-space: nowrap;">Person 2</font>
-                    </td>
-                    <td width="98%">
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Sheets used per trip</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val21">4</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r21">
-                                <input type="range" value="4" min="1" max="20" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Toilet visits per day</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val22">2</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r22">
-                                <input type="range" value="2" min="1" max="10" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="1%">
-                      <a class="link icon-only" onclick="del(2);">
-                        <i class="material-icons md-only" style="font-size: 22px; opacity: 1;">clear</i>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </li>
-              <li id="person3" style="opacity: 0;">
-                <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                <table style="width:96%;margin-left: 2%;">
-                  <tr>
-                    <td width="1%">
-                      <font style="overflow: hidden; white-space: nowrap;">Person 3</font>
-                    </td>
-                    <td width="98%">
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Sheets used per trip</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val31">4</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r31">
-                                <input type="range" value="4" min="1" max="20" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Toilet visits per day</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val32">2</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r32">
-                                <input type="range" value="2" min="1" max="10" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="1%">
-                      <a class="link icon-only" onclick="del(3);">
-                        <i class="material-icons md-only" style="font-size: 22px; opacity: 1;">clear</i>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </li>
-              <li id="person4" style="opacity: 0;">
-                <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                <table style="width:96%;margin-left: 2%;">
-                  <tr>
-                    <td width="1%">
-                      <font style="overflow: hidden; white-space: nowrap;">Person 4</font>
-                    </td>
-                    <td width="98%">
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Sheets used per trip</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val41">4</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r41">
-                                <input type="range" value="4" min="1" max="20" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Toilet visits per day</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val42">2</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r42">
-                                <input type="range" value="2" min="1" max="10" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="1%">
-                      <a class="link icon-only" onclick="del(4);">
-                        <i class="material-icons md-only" style="font-size: 22px; opacity: 1;">clear</i>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </li>
-              <li id="person5" style="opacity: 0;">
-                <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                <table style="width:96%;margin-left: 2%;">
-                  <tr>
-                    <td width="1%">
-                      <font style="overflow: hidden; white-space: nowrap;">Person 5</font>
-                    </td>
-                    <td width="98%">
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Sheets used per trip</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val51">4</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r51">
-                                <input type="range" value="4" min="1" max="20" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Toilet visits per day</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val52">2</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r52">
-                                <input type="range" value="2" min="1" max="10" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="1%">
-                      <a class="link icon-only" onclick="del(5);">
-                        <i class="material-icons md-only" style="font-size: 22px; opacity: 1;">clear</i>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </li>
-              <li id="person6" style="opacity: 0;">
-                <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                <table style="width:96%;margin-left: 2%;">
-                  <tr>
-                    <td width="1%">
-                      <font style="overflow: hidden; white-space: nowrap;">Person 6</font>
-                    </td>
-                    <td width="98%">
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Sheets used per trip</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val61">4</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r61">
-                                <input type="range" value="4" min="1" max="20" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                      <table style="width:96%;margin-left: 2%;">
-                        <tr>
-                          <td>
-                            <table style="width:100%;">
-                              <tr>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Toilet visits per day</font>
-                                </td>
-                                <td width="98%"></td>
-                                <td width="1%">
-                                  <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="val62">2</font>
-                                </td>
-                              </tr>
-                            </table>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                              <div class="range-slider range-slider-init" data-label="false" id="r62">
-                                <input type="range" value="2" min="1" max="10" step="1">
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                    <td width="1%">
-                      <a class="link icon-only" onclick="del(6);">
-                        <i class="material-icons md-only" style="font-size: 22px; opacity: 1;">clear</i>
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </li>
-              <li class="accordion-item" id="advopts" style="opacity: 0;">
-                <a href="#" class="item-link item-content" style="border-top: 1px solid rgba(255,255,255,.15);">
-                  <div class="item-inner">
-                    <div class="item-title">Advanced Options</div>
-                  </div>
-                </a>
-                <div class="accordion-item-content">
-                  <div class="list">
-                    <ul>
-                      <li>
-                        <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                        <div style="width:100%;">
-                          <table style="width:96%;margin-left: 2%;">
-                            <tr>
-                              <td>
-                                <table style="width:100%;">
-                                  <tr>
-                                    <td width="1%">
-                                      <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Sheets per roll</font>
-                                    </td>
-                                    <td width="98%"></td>
-                                    <td width="1%">
-                                      <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="v2">160</font>
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                                  <div class="range-slider range-slider-init" data-label="false" id="r2">
-                                    <input type="range" value="160" min="100" max="500" step="1">
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
-                        </div>
-                      </li>
-                      <li>
-                        <div style="border-top: 1px solid rgba(255,255,255,.05); height:1px; width: 94%;margin-left: 3%;"></div>
-                        <div style="width:100%;">
-                          <table style="width:96%;margin-left: 2%;">
-                            <tr>
-                              <td>
-                                <table style="width:100%;">
-                                  <tr>
-                                    <td width="1%">
-                                      <font style="font-size: 12px;overflow: hidden; white-space: nowrap;">Days on quarantine</font>
-                                    </td>
-                                    <td width="98%"></td>
-                                    <td width="1%">
-                                      <font style="font-size: 12px;overflow: hidden; white-space: nowrap;" id="v3">60</font>
-                                    </td>
-                                  </tr>
-                                </table>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <div class="item-input-wrap" style="width:94%;margin-left: 3%;">
-                                  <div class="range-slider range-slider-init" data-label="false" id="r3">
-                                    <input type="range" value="60" min="1" max="150" step="1">
-                                  </div>
-                                </div>
-                              </td>
-                            </tr>
-                          </table>
-                        </div>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="popover popover-info">
-            <div class="popover-inner">
-                <div class="card">
-                  <div class="card-header">Colour Theme <i class="material-icons md-only">palette</i></div>
-                  <div class="card-content card-content-padding">
-                      <table style="width:100%;">
-                          <tr>
-                            <td>
-                              <center><div onclick="update_colour('red');" class="chip-media bg-color-red"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('green');" class="chip-media bg-color-green"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('blue');" class="chip-media bg-color-blue"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('pink');" class="chip-media bg-color-pink"></div></center>
-                            </td>
-                          </tr>
-                          <tr style="height: 72px;">
-                            <td>
-                              <center><div onclick="update_colour('yellow');" class="chip-media bg-color-yellow"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('orange');" class="chip-media bg-color-orange"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('purple');" class="chip-media bg-color-purple"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('deeppurple');" class="chip-media bg-color-deeppurple"></div></center>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <center><div onclick="update_colour('lightblue');" class="chip-media bg-color-lightblue"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('teal');" class="chip-media bg-color-teal"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('lime');" class="chip-media bg-color-lime"></div></center>
-                            </td>
-                            <td>
-                              <center><div onclick="update_colour('deeporange');" class="chip-media bg-color-deeporange"></div></center>
-                            </td>
-                          </tr>
-                      </table>
-                    </div>
-                </div>
-                <div class="card">
-                <br/><center>
-                  Made by Chirag Galaiya<br/><br/>
-                  <table style="width:100%;">
-                    <tr>
-                      <td width="25%"></td>  
-                      <td width="20%">
-                          <center><img onclick="window.open('https://www.instagram.com/chiraggalaiya/', '_system'); return false;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF+mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTA3LTI3VDAxOjAxOjA4KzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wNy0yN1QwMjowMTowNSswMTowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0wNy0yN1QwMjowMTowNSswMTowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpjYmQ0ZjA0Zi1lM2JkLWMwNDctODA5MS02Y2U4ODA1ZDc4YWQiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpiZmNhZTljNi0wZDQ3LTdiNGMtODU4Ny0wMmJhOGZlNjNiNzMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo4MGQ4ODcwNC1hYjA2LTI5NDgtOGU1Zi04MzkzMzQ5NGU1NDUiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjgwZDg4NzA0LWFiMDYtMjk0OC04ZTVmLTgzOTMzNDk0ZTU0NSIgc3RFdnQ6d2hlbj0iMjAxOS0wNy0yN1QwMTowMTowOCswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpjYmQ0ZjA0Zi1lM2JkLWMwNDctODA5MS02Y2U4ODA1ZDc4YWQiIHN0RXZ0OndoZW49IjIwMTktMDctMjdUMDI6MDE6MDUrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7DD+bfAAAU/klEQVR4nO2de7QfVXXHPze5NzcvoyDJqkUgJCIRaZVHUxUfQYytAosFYhuqrVjaSrWrFBer9YFL24quLlah1lpBS30LilJXUYmhYGl5CbGlYikICpUQoDyMed7kvvrHns2cOb/53cyZ3+83M785+7PWrNx7c8/MufPb3/PcZ++R2dlZDCNW5tVdAcOoExOAETUmACNqTABG1JgAjKgxARhRYwIwosYEYESNCcCIGhOAETUmACNqTABG1JgAjKgxARhRYwIwosYE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" style="width:45px;"/></center>
-                      </td>  
-                      <td width="10%"></td>  
-                      <td width="20%">
-                          <center><img onclick="window.open('https://www.snapchat.com/add/chilichingching', '_system'); return false;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF+mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTA3LTI3VDAxOjAxOjA5KzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wNy0yN1QwMjowMDozNyswMTowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0wNy0yN1QwMjowMDozNyswMTowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3NDNkNDkzZS04ZjE3LTM2NDYtYjZjZC02YjJkYWQ4ZjdhZDciIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo2MDEyYzIyNy1lZmFmLTkwNDctOTczZC05YWQwOWVjNzQ4YjYiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpmYTBiYzQ5ZC0wYTZjLTlkNDQtOWU2ZS0xMGJhMzIxZGZkNmQiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmZhMGJjNDlkLTBhNmMtOWQ0NC05ZTZlLTEwYmEzMjFkZmQ2ZCIgc3RFdnQ6d2hlbj0iMjAxOS0wNy0yN1QwMTowMTowOSswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NDNkNDkzZS04ZjE3LTM2NDYtYjZjZC02YjJkYWQ4ZjdhZDciIHN0RXZ0OndoZW49IjIwMTktMDctMjdUMDI6MDA6MzcrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5zchXAAAAZlElEQVR4nO2debRdVX3HP+/lDYGQAAkQICQSBVTAKgKCAlURi6JAGaRSCVIggO1irFBEFxbXQkBcDghWEKVQKoNg6KIalAWWoiAySBmlFAFtAgUSQkjykpeXpH/87m+d39333GGfO+1zzv6sddZ9eXn33HPP2d89/PZvGNiwYQORSFkZ7PcFRCL9JAogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKl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" style="width:45px;"/></center>
-                      </td>  
-                      <td width="25%"></td>  
-                    </tr>
-                  </table>
-                </center><br/>
-                </div>
+          <a href="/about/">asd</a>
+          <br/>
+          <a href="/abc/">asd</a>
+          <!-- add, group_add -->
+          <!--<div style="padding: 16px;">
+            <div class="card game-cards" onclick="create_game();">
+              <div class="card-header">Create Game <i class="material-icons md-only">add</i></div>
+            </div>
+            <div class="card game-cards" style="margin-top: 20px;" onclick="join_game();">
+              <div class="card-header">Join Game <i class="material-icons md-only">group_add</i></div>
             </div>
           </div>
+        </div>-->
+        <div class="popover popover-info">
+          <div class="popover-inner">
+            <div class="card">
+              <div class="card-header">Colour Theme <i class="material-icons md-only">palette</i></div>
+              <div class="card-content card-content-padding">
+                  <table style="width:100%;">
+                      <tr>
+                        <td>
+                          <center><div onclick="update_colour('red');" class="chip-media bg-color-red colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('green');" class="chip-media bg-color-green colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('blue');" class="chip-media bg-color-blue colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('pink');" class="chip-media bg-color-pink colorpicker"></div></center>
+                        </td>
+                      </tr>
+                      <tr style="height: 72px;">
+                        <td>
+                          <center><div onclick="update_colour('yellow');" class="chip-media bg-color-yellow colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('orange');" class="chip-media bg-color-orange colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('purple');" class="chip-media bg-color-purple colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('deeppurple');" class="chip-media bg-color-deeppurple colorpicker"></div></center>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <center><div onclick="update_colour('lightblue');" class="chip-media bg-color-lightblue colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('teal');" class="chip-media bg-color-teal colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('lime');" class="chip-media bg-color-lime colorpicker"></div></center>
+                        </td>
+                        <td>
+                          <center><div onclick="update_colour('deeporange');" class="chip-media bg-color-deeporange colorpicker"></div></center>
+                        </td>
+                      </tr>
+                  </table>
+                </div>
+            </div>
+            <div class="card">
+            <br/><center>
+              Made by Chirag Galaiya<br/><br/>
+              <table style="width:100%;">
+                <tr>
+                  <td width="25%"></td>  
+                  <td width="20%">
+                      <center><img onclick="window.open('https://www.instagram.com/chiraggalaiya/', '_system'); return false;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF+mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTA3LTI3VDAxOjAxOjA4KzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wNy0yN1QwMjowMTowNSswMTowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0wNy0yN1QwMjowMTowNSswMTowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpjYmQ0ZjA0Zi1lM2JkLWMwNDctODA5MS02Y2U4ODA1ZDc4YWQiIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDpiZmNhZTljNi0wZDQ3LTdiNGMtODU4Ny0wMmJhOGZlNjNiNzMiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo4MGQ4ODcwNC1hYjA2LTI5NDgtOGU1Zi04MzkzMzQ5NGU1NDUiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOjgwZDg4NzA0LWFiMDYtMjk0OC04ZTVmLTgzOTMzNDk0ZTU0NSIgc3RFdnQ6d2hlbj0iMjAxOS0wNy0yN1QwMTowMTowOCswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDpjYmQ0ZjA0Zi1lM2JkLWMwNDctODA5MS02Y2U4ODA1ZDc4YWQiIHN0RXZ0OndoZW49IjIwMTktMDctMjdUMDI6MDE6MDUrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7DD+bfAAAU/klEQVR4nO2de7QfVXXHPze5NzcvoyDJqkUgJCIRaZVHUxUfQYytAosFYhuqrVjaSrWrFBer9YFL24quLlah1lpBS30LilJXUYmhYGl5CbGlYikICpUQoDyMed7kvvrHns2cOb/53cyZ3+83M785+7PWrNx7c8/MufPb3/PcZ++R2dlZDCNW5tVdAcOoExOAETUmACNqTABG1JgAjKgxARhRYwIwosYEYESNCcCIGhOAETUmACNqTABG1JgAjKgxARhRYwIwosYE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" style="width:45px;"/></center>
+                  </td>  
+                  <td width="10%"></td>  
+                  <td width="20%">
+                      <center><img onclick="window.open('https://www.snapchat.com/add/chilichingching', '_system'); return false;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAF+mlUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS42LWMxNDIgNzkuMTYwOTI0LCAyMDE3LzA3LzEzLTAxOjA2OjM5ICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgeG1sbnM6cGhvdG9zaG9wPSJodHRwOi8vbnMuYWRvYmUuY29tL3Bob3Rvc2hvcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RFdnQ9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZUV2ZW50IyIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ0MgMjAxOCAoV2luZG93cykiIHhtcDpDcmVhdGVEYXRlPSIyMDE5LTA3LTI3VDAxOjAxOjA5KzAxOjAwIiB4bXA6TW9kaWZ5RGF0ZT0iMjAxOS0wNy0yN1QwMjowMDozNyswMTowMCIgeG1wOk1ldGFkYXRhRGF0ZT0iMjAxOS0wNy0yN1QwMjowMDozNyswMTowMCIgZGM6Zm9ybWF0PSJpbWFnZS9wbmciIHBob3Rvc2hvcDpDb2xvck1vZGU9IjMiIHBob3Rvc2hvcDpJQ0NQcm9maWxlPSJzUkdCIElFQzYxOTY2LTIuMSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo3NDNkNDkzZS04ZjE3LTM2NDYtYjZjZC02YjJkYWQ4ZjdhZDciIHhtcE1NOkRvY3VtZW50SUQ9ImFkb2JlOmRvY2lkOnBob3Rvc2hvcDo2MDEyYzIyNy1lZmFmLTkwNDctOTczZC05YWQwOWVjNzQ4YjYiIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpmYTBiYzQ5ZC0wYTZjLTlkNDQtOWU2ZS0xMGJhMzIxZGZkNmQiPiA8eG1wTU06SGlzdG9yeT4gPHJkZjpTZXE+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJjcmVhdGVkIiBzdEV2dDppbnN0YW5jZUlEPSJ4bXAuaWlkOmZhMGJjNDlkLTBhNmMtOWQ0NC05ZTZlLTEwYmEzMjFkZmQ2ZCIgc3RFdnQ6d2hlbj0iMjAxOS0wNy0yN1QwMTowMTowOSswMTowMCIgc3RFdnQ6c29mdHdhcmVBZ2VudD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTggKFdpbmRvd3MpIi8+IDxyZGY6bGkgc3RFdnQ6YWN0aW9uPSJzYXZlZCIgc3RFdnQ6aW5zdGFuY2VJRD0ieG1wLmlpZDo3NDNkNDkzZS04ZjE3LTM2NDYtYjZjZC02YjJkYWQ4ZjdhZDciIHN0RXZ0OndoZW49IjIwMTktMDctMjdUMDI6MDA6MzcrMDE6MDAiIHN0RXZ0OnNvZnR3YXJlQWdlbnQ9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE4IChXaW5kb3dzKSIgc3RFdnQ6Y2hhbmdlZD0iLyIvPiA8L3JkZjpTZXE+IDwveG1wTU06SGlzdG9yeT4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz5zchXAAAAZlElEQVR4nO2debRdVX3HP+/lDYGQAAkQICQSBVTAKgKCAlURi6JAGaRSCVIggO1irFBEFxbXQkBcDghWEKVQKoNg6KIalAWWoiAySBmlFAFtAgUSQkjykpeXpH/87m+d39333GGfO+1zzv6sddZ9eXn33HPP2d89/PZvGNiwYQORSFkZ7PcFRCL9JAogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKlJgogUmqiACKl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" style="width:45px;"/></center>
+                  </td>  
+                  <td width="25%"></td>  
+                </tr>
+              </table>
+            </center><br/>
+            </div>
+          </div>
+        </div>
+        <div class="popover popover-person">
+          <div class="popover-inner">
+            <div class="card-header">Username <a href="#" class="link icon-only" onclick="update_username();try{person_popover.close();}catch(e){}"><i class="material-icons md-only">done</i></a></div>
+            <div class="card-content card-content-padding">
+              <div class="list inline-labels">
+                <div class="item-content item-input" style="margin-bottom: 6px;">
+                  <div class="item-inner">
+                    <div class="item-input-wrap">
+                      <input type="text" name="name" id="username">
+                      <span class="input-clear-button"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <script src="framework7.bundle.min.js"></script>
-  <script src="app.js?4"></script>
+</div>
+<script src="https://js.pusher.com/5.1/pusher.min.js"></script>
+<script src="js/framework7.bundle.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
