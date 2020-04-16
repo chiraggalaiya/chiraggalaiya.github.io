@@ -92,6 +92,8 @@ function update_username() {
       app.input.focus(person_popover.$el[0].getElementsByTagName("input")[0]);
       person_popover.$el[0].getElementsByTagName("input")[0].focus();
     }
+  } else {
+    person_popover.close();
   }
 }
 $('.popover-person').on('popover:closed', function (e) {
