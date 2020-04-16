@@ -56,11 +56,10 @@ window.onload = function() {
   }
 }
 
-document.addEventListener("backbutton", onBackKeyDown, false);
-
-function onBackKeyDown() {
-    alert("back button pressed");
-}
+$(window).on('popstate',function(){
+  app.dialog.alert("back button on android clicked");
+  mainView.router.back();
+});
 
 
 function update_colour(c) {
