@@ -54,16 +54,14 @@ window.onload = function() {
   } else {
     document.documentElement.classList.replace("color-theme-pink", "color-theme-" + window.localStorage.getItem("theme-color"));
   }
-  window.location.hash = Math.random().toString(36).substring(7);
-  setTimeout(() => { window.location.hash = Math.random().toString(36).substring(7); }, 100);
 }
 
-setTimeout(() => {
-  $(window).on("hashchange", function(e) {
-    toast("Don't press back button", 1200);
-    window.location.hash = Math.random().toString(36).substring(7);
-  });
-}, 200);
+document.addEventListener("backbutton", onBackKeyDown, false);
+
+function onBackKeyDown() {
+    alert("back button pressed");
+}
+
 
 function update_colour(c) {
   document.documentElement.classList.replace("color-theme-"+window.localStorage.getItem("theme-color"), "color-theme-"+c);
@@ -73,7 +71,6 @@ function update_colour(c) {
 
 var person_popover = app.popover.get($('.popover-person')[0]);
 function person() {
-  window.location.hash = "username-popover";
   person_popover = app.popover.open(document.getElementsByClassName("popover-person")[0], document.getElementById("person_btn"), true);
   if (person_popover.$el[0].getElementsByTagName("input")[0].value == "") {
     app.input.focus(person_popover.$el[0].getElementsByTagName("input")[0]);
@@ -103,9 +100,6 @@ function update_username() {
     person_popover.close();
   }
 }
-$('.popover-person').on('popover:close', function (e) {
-  window.history.back();
-});
 $('.popover-person').on('popover:closed', function (e) {
   $('#username')[0].value = window.localStorage.getItem("username");
 });
