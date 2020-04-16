@@ -24,6 +24,8 @@ var offlineFundamentals = [
   'fonts/MaterialIcons-Regular.ttf',
   'fonts/MaterialIcons-Regular.woff',
   'fonts/MaterialIcons-Regular.woff2',
+  'fonts/Roboto-Regular.ttf',
+  'fonts/Roboto-Thin.ttf',
   'js/app.js',
   'js/framework7.bundle.min.js',
   'pages/404.html',

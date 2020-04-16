@@ -59,3 +59,10 @@
   font-feature-settings: "liga";
   text-align: center;
 }
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Roboto-Thin.ttf") format("truetype");
+}
