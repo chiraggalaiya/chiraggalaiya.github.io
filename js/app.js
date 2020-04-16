@@ -39,7 +39,7 @@ var app = new Framework7({
 var mainView = app.views.create('.view-main');
 
 function share() { window.navigator.share({title: 'Bukhar App by Chirag Galaiya', text: 'Bukhar App', url: "https://chilichingching.github.io"}); }
-function toast(msg, time) { app.toast.create({ text: msg, closeTimeout: time, }).open(); }
+function toast(msg, time) { app.toast.create({ text: msg, closeTimeout: time }).open(); }
 
 window.onload = function() {
   try { if (window.navigator.canShare({title:'',text:'',url:''})) { document.getElementById("share").style.display = "flex"; } } catch(e) { }
@@ -54,7 +54,16 @@ window.onload = function() {
   } else {
     document.documentElement.classList.replace("color-theme-pink", "color-theme-" + window.localStorage.getItem("theme-color"));
   }
+  window.location.hash = Math.random().toString(36).substring(7);
+  setTimeout(() => { window.location.hash = Math.random().toString(36).substring(7); }, 100);
 }
+
+setTimeout(() => {
+  $(window).on("hashchange", function(e) {
+    toast("Don't press back button", 1200);
+    window.location.hash = Math.random().toString(36).substring(7);
+  });
+}, 200);
 
 function update_colour(c) {
   document.documentElement.classList.replace("color-theme-"+window.localStorage.getItem("theme-color"), "color-theme-"+c);
@@ -64,6 +73,7 @@ function update_colour(c) {
 
 var person_popover = app.popover.get($('.popover-person')[0]);
 function person() {
+  window.location.hash = "username-popover";
   person_popover = app.popover.open(document.getElementsByClassName("popover-person")[0], document.getElementById("person_btn"), true);
   if (person_popover.$el[0].getElementsByTagName("input")[0].value == "") {
     app.input.focus(person_popover.$el[0].getElementsByTagName("input")[0]);
@@ -93,6 +103,9 @@ function update_username() {
     person_popover.close();
   }
 }
+$('.popover-person').on('popover:close', function (e) {
+  window.history.back();
+});
 $('.popover-person').on('popover:closed', function (e) {
   $('#username')[0].value = window.localStorage.getItem("username");
 });
@@ -122,6 +135,6 @@ function score() {
   toast("coming soon!", 1200);
 }
 
-function history() {
+function history_card() {
   toast("coming soon!", 1200);
 }
