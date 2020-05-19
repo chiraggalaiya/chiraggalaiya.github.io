@@ -1,0 +1,107 @@
+@font-face { font-family: KayakSans; src: url(assets/Kayak-Sans-Regular.ttf); }
+@font-face { font-family: KayakSansBold; src: url(assets/Kayak-Sans-Bold.ttf); }
+@font-face { font-family: KayakSansLight; src: url(assets/Kayak-Sans-Light.ttf); }
+
+html, body { height: 100%; overflow-x: hidden; overflow-y: hidden; }
+
+body {
+  margin: 0px;
+  background-color: #1E2128;
+  color: #E4E4E4;
+  font-family: KayakSans;
+}
+
+.app-bar {
+  width: 100%;
+  height: 15%;
+}
+
+.app-bar table {
+  height: 100%;
+  width: 100%;
+}
+
+.app-bar table tr {
+  width: 100%;
+}
+
+.app-logo {
+  width:100%;
+  height: 70%;
+  background-image: url(assets/256logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.logo-text-top {
+  font-family: KayakSansBold;
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.logo-text-bottom {
+  font-family: KayakSansLight;
+  font-size: 14px;
+  position: absolute;
+  transform: translate(1px, -20px);
+}
+
+.home-slider-cont {
+  height: 55%;
+  display: flex;
+  align-items: center;
+}
+
+.swiper-wrapper {
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+}
+
+.swiper-slide .slide {
+  color:#fff;
+  height: 100%;
+  width: 85%;
+  text-align: center;
+  transform: scale(.85,.85);
+  transition: all ease .3s;
+  border-radius: 36px;
+  display: inline-block;
+}
+
+.swiper-slide-active .slide {
+  transform: scale(1,1);
+  width: 100%;
+}
+
+.swiper-slide:nth-child(1) .slide { background-image: linear-gradient(to top right, #1BCEDF, #5B247A); }
+.swiper-slide:nth-child(2) .slide { background-image: linear-gradient(to top right, #F38181, #FCE38A); }
+.swiper-slide:nth-child(3) .slide { background-image: linear-gradient(to top right, #3BB2B8, #42E695); }
+.swiper-slide:nth-child(4) .slide { background-image: linear-gradient(to top right, #2A2D36, #4E535C); }
+
+.next-btn-slide {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0px 4px 5px rgba(255, 255, 255, 0.1);
+  transition: all ease .3s;
+}
+
+.next-btn-slide .arrow {
+  background-image: url(assets/arrow.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 35%;
+  height: 35%;
+  margin: 32.5%;
+}
+
+.swiper-slide-active .next-btn-slide {
+  
+}
