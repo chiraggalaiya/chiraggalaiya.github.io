@@ -2,7 +2,7 @@ var swiper = new Swiper({
     el: '.home-slider-cont',
     initialSlide: 1,
     spaceBetween: 0,
-    slidesPerView: 1.3,
+    slidesPerView: 1.35,
     centeredSlides: true,
     slideToClickedSlide: false,
     mousewheel: {
