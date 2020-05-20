@@ -48,7 +48,7 @@ body {
 }
 
 .home-slider-cont {
-  height: 55%;
+  height: 57%;
   display: flex;
   align-items: center;
 }
@@ -64,7 +64,7 @@ body {
 .swiper-slide .slide {
   color:#fff;
   height: 100%;
-  width: 85%;
+  width: 95%;
   text-align: center;
   transform: scale(.85,.85);
   transition: all ease .3s;
@@ -84,8 +84,7 @@ body {
 
 .next-btn-slide {
   position: absolute;
-  width: 70px;
-  height: 70px;
+  width: 20%;
   background-color: white;
   border-radius: 50%;
   box-shadow: 0px 4px 5px rgba(255, 255, 255, 0.1);
@@ -97,9 +96,9 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 35%;
-  height: 35%;
-  margin: 32.5%;
+  width: 30%;
+  height: 30%;
+  margin: 35%;
 }
 
 .swiper-slide-active .next-btn-slide {

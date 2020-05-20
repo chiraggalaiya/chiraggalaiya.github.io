@@ -2,7 +2,7 @@ var swiper = new Swiper({
     el: '.home-slider-cont',
     initialSlide: 1,
     spaceBetween: 0,
-    slidesPerView: 1.5,
+    slidesPerView: 1.3,
     centeredSlides: true,
     slideToClickedSlide: false,
     mousewheel: {
@@ -14,7 +14,7 @@ var swiper = new Swiper({
     loop: false
 });
 
-var css = ".swiper-slide-active .next-btn-slide  { transform: translate("+Math.floor(document.getElementsByClassName("swiper-slide")[0].style.width.slice(0, -2)*.65).toString()+"px, -35px) scale(1); } .next-btn-slide  { transform: translate("+Math.floor($(".swiper-slide").width()*.65).toString()+"px, -"+Math.floor($(".swiper-slide").height()*.075+35).toString()+"px) scale(0); }",
+var css = ".swiper-slide-active .next-btn-slide  { transform: translate("+Math.floor($(".swiper-slide").width()*.65).toString()+"px, -"+($(".next-btn-slide").width()*.5).toString()+"px) scale(1); } .next-btn-slide  { height: "+$(".next-btn-slide").width().toString()+"px; transform: translate("+Math.floor($(".swiper-slide").width()*.65-$(".swiper-slide").width()*.075).toString()+"px, -"+Math.floor($(".swiper-slide").height()*.075+$(".next-btn-slide").width()*.5).toString()+"px) scale(0); }",
     head = document.head || document.getElementsByTagName('head')[0],
     style = document.createElement('style');
 head.appendChild(style);
