@@ -108,7 +108,7 @@ body {
   transform: scale(1);
 }
 
-.btn:active {
+.swiper-slide-active .btn:active {
   transform: scale(1.05);
 }
 

@@ -4,7 +4,7 @@ var swiper = new Swiper({
     spaceBetween: 0,
     slidesPerView: 1.35,
     centeredSlides: true,
-    slideToClickedSlide: false,
+    slideToClickedSlide: true,
     mousewheel: {
       enabled: false,
     },
