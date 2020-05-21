@@ -129,11 +129,16 @@ body {
 
 .slide-title {
   font-family: KayakSans;
-  font-size: 24px;
+  font-size: 21px;
   line-height: 150%;
   margin-top: 10%;
   width: 70%;
   margin-left: 15%;
+  transition: all ease .3s;
+}
+
+.swiper-slide-active .slide-title {
+  font-size: 24px;
 }
 
 .slide-icon-cont {
