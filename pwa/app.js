@@ -24,3 +24,42 @@ if (style.styleSheet){
 } else {
   style.appendChild(document.createTextNode(css));
 }
+
+const rippleeffects = Array.from(document.querySelectorAll(".ripple-effect"));
+rippleeffects.forEach((rippleeffect) => {
+  let timerId;
+  rippleeffect.addEventListener("mousedown", (e) => {
+    clearTimeout(timerId);
+    const ripple = e.target.querySelector(".ripple");
+    const size = rippleeffect.offsetWidth;
+    const pos = rippleeffect.getBoundingClientRect();
+    const x = e.pageX - pos.left - size;
+    const y = e.pageY - pos.top - size;
+    ripple.style =
+      "top:" +
+      y +
+      "px; left:" +
+      x +
+      "px; width: " +
+      size * 2 +
+      "px; height: " +
+      size * 2 +
+      "px;";
+    ripple.classList.remove("active");
+    ripple.classList.remove("start");
+    setTimeout(() => {
+      ripple.classList.add("start");
+      setTimeout(() => {
+        ripple.classList.add("active");
+      });
+    });
+  });
+  rippleeffect.addEventListener("mouseup", (e) => {
+    const ripple = e.target.querySelector(".ripple");
+    clearTimeout(timerId);
+    timerId = setTimeout(() => {
+      ripple.classList.remove("active");
+      ripple.classList.remove("start");
+    }, 500);
+  });
+});
