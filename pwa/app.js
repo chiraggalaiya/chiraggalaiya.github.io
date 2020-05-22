@@ -13,6 +13,22 @@ var swiper_main = new Swiper({
     },
     loop: false
 });
+
+var swiper_headlines = new Swiper({
+    el: '.headline-slider-cont',
+    initialSlide: 0,
+    spaceBetween: 0,
+    slidesPerView: 1.35,
+    centeredSlides: true,
+    slideToClickedSlide: false,
+    mousewheel: {
+      enabled: false,
+    },
+    keyboard: {
+      enabled: false,
+    },
+    loop: false
+});
 var swiper_main_funcs = [
   calculator,
   curr_exch_rates,
@@ -36,6 +52,10 @@ function about() {
   console.log("about");
 }
 
+function swiper_headlines_clicked(index) {
+  console.log("Headline #"+index);
+}
+
 var css = ".swiper-slide-active .next-btn-slide  { transform: translate("+Math.floor($(".swiper-slide").width()*.65).toString()+"px, -"+($(".next-btn-slide").width()*.5).toString()+"px) scale(1); } .next-btn-slide  { height: "+$(".next-btn-slide").width().toString()+"px; transform: translate("+Math.floor($(".swiper-slide").width()*.65-$(".swiper-slide").width()*.075).toString()+"px, -"+Math.floor($(".swiper-slide").height()*.075+$(".next-btn-slide").width()*.5).toString()+"px) scale(0); }",
     head = document.head || document.getElementsByTagName('head')[0],
     style = document.createElement('style');
@@ -52,7 +72,7 @@ rippleeffects.forEach((rippleeffect) => {
   let timerId;
   rippleeffect.addEventListener("mousedown", (e) => {
     clearTimeout(timerId);
-    const ripple = e.target.querySelector(".ripple");
+    const ripple = e.target.parentElement.querySelector(".ripple");
     const size = rippleeffect.offsetWidth;
     const pos = rippleeffect.getBoundingClientRect();
     const x = e.pageX - pos.left - size;
@@ -77,7 +97,7 @@ rippleeffects.forEach((rippleeffect) => {
     });
   });
   rippleeffect.addEventListener("mouseup", (e) => {
-    const ripple = e.target.querySelector(".ripple");
+    const ripple = e.target.parentElement.querySelector(".ripple");
     clearTimeout(timerId);
     timerId = setTimeout(() => {
       ripple.classList.remove("active");
@@ -112,6 +132,30 @@ slide_btns.forEach((slide_btn) => {
       swiper_main_funcs[swiper_main.clickedIndex]();
     } else {
       swiper_main.slideTo(swiper_main.clickedIndex);
+    }
+  }
+});
+const headlines_slide_btns = Array.from(document.querySelectorAll(".headline-slider-cont .btn"));
+headlines_slide_btns.forEach((slide_btn) => {
+  slide_btn.onmousedown = function() {
+    if (swiper_headlines.activeIndex == swiper_headlines.clickedIndex) {
+      if (this.classList.contains('btn-active')) {
+        this.classList.remove('btn-active');
+        setTimeout(() => {
+          this.classList.add('btn-active');
+          setTimeout(() => {
+            this.classList.remove('btn-active');
+          }, 300);
+        }, 10);
+      } else {
+        this.classList.add('btn-active');
+        setTimeout(() => {
+          this.classList.remove('btn-active');
+        }, 300);
+      }
+      swiper_headlines_clicked(swiper_headlines.clickedIndex);
+    } else {
+      swiper_headlines.slideTo(swiper_headlines.clickedIndex);
     }
   }
 });
