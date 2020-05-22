@@ -227,7 +227,7 @@ body {
 .headline-slider-cont .slide .headline-text {
   margin: 3.5% 5.25% 3.5% 5.25%;
   width: 89.5%;
-  max-height: 50%;
+  max-height: 60%;
   font-size: 120%;
   overflow: hidden;
   text-overflow: ellipsis;
