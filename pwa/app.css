@@ -225,10 +225,10 @@ body {
   width: 100%;
 }
 .headline-slider-cont .slide .headline-text {
-  margin: 5% 7.5% 5% 7.5%;
-  width: 85%;
-  font-size: 18.5px;
+  margin: 3.5% 5.25% 3.5% 5.25%;
+  width: 89.5%;
   max-height: 50%;
+  font-size: 120%;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -237,17 +237,11 @@ body {
   text-align: left;
   transition: all ease .3s;
 }
-.headline-slider-cont .swiper-slide-active .slide .headline-text {
-  font-size: 20px;
-}
 .headline-slider-cont .slide .headline-via {
   font-family: KayakSansLight;
-  font-size: 15px;
+  font-size: 90%;
   color: #6B7889;
   position: absolute;
   bottom: 10%;
   right: 10%;
-}
-.headline-slider-cont .swiper-slide-active .slide .headline-via {
-  font-size: 16px;
 }
